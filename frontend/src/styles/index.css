@@ -1,0 +1,889 @@
+/* ==========================================================================
+   EcoShield AI - Pune Metropolitan Flood Intelligence & Disaster Command
+   Forest Green Editorial Design System (Inspired by Reference UI)
+   Deep Forest Green (#092317) • Fresh Lime Accent (#BBF451) • Crisp White
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  --font-display: "Outfit", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+
+  /* ── Deep Forest Green Surfaces (Reference UI) ── */
+  --forest-950: #061a10;
+  --forest-900: #092317; /* Signature Deep Forest Green */
+  --forest-850: #0d2f1f;
+  --forest-800: #123e28;
+  --forest-700: #185235;
+  --forest-600: #1f6743;
+  --forest-500: #298256;
+
+  /* ── Fresh Lime Highlight Accents ── */
+  --lime-500: #bbf451; /* Vibrant Lime Accent */
+  --lime-400: #ccff66;
+  --lime-600: #a3e635;
+  --lime-text-dark: #061a10;
+  --lime-badge-bg: rgba(187, 244, 81, 0.16);
+  --lime-border: rgba(187, 244, 81, 0.38);
+
+  /* ── River Teal Water Accents ── */
+  --teal-700: #0f766e;
+  --teal-600: #14b8a6;
+  --teal-500: #06b6d4;
+  --teal-400: #2dd4bf;
+
+  /* ── Background Surfaces ── */
+  --bg-app:          #f4f6f4; /* Calm light sage-white page canvas */
+  --bg-canvas:       #f4f6f4;
+  --bg-white:        #ffffff;
+  --bg-surface:      #ffffff;
+  --bg-card:         #ffffff;
+  --bg-subtle:       #eef2ee;
+  --bg-elevated:     #ffffff;
+  --bg-forest:       #092317;
+  --bg-forest-card:  #0d2f1f;
+
+  /* ── Precision Borders ── */
+  --border-subtle:   #e5eae5;
+  --border-light:    #e5eae5;
+  --border-medium:   #cbd5cb;
+  --border-dark:     rgba(255, 255, 255, 0.12);
+  --border-focus:    #a3e635;
+
+  /* ── Typography Contrast ── */
+  --text-charcoal:   #0f172a;
+  --text-primary:    #0f172a;
+  --text-secondary:  #334155;
+  --text-muted:      #64748b;
+  --text-light:      #f8faf8;
+  --text-on-forest:  #f4fbf6;
+  --text-inverse:    #ffffff;
+
+  /* ── Compatibility Green Tokens ── */
+  --green-500: #15803d;
+  --green-400: #22c55e;
+  --green-300: #86efac;
+
+  /* ── Status Indicators ── */
+  --risk-low-bg:     rgba(187, 244, 81, 0.20);
+  --risk-low-text:   #14532d;
+  --risk-low-border: rgba(34, 197, 94, 0.35);
+  --risk-low-dot:    #16a34a;
+
+  --risk-mod-bg:     rgba(245, 158, 11, 0.14);
+  --risk-mod-text:   #b45309;
+  --risk-mod-border: rgba(245, 158, 11, 0.35);
+  --risk-mod-dot:    #d97706;
+
+  --risk-high-bg:    rgba(239, 68, 68, 0.14);
+  --risk-high-text:  #b91c1c;
+  --risk-high-border:rgba(239, 68, 68, 0.35);
+  --risk-high-dot:   #dc2626;
+
+  --risk-crit-bg:    rgba(239, 68, 68, 0.18);
+  --risk-crit-text:  #991b1b;
+  --risk-crit-border:rgba(239, 68, 68, 0.45);
+  --risk-crit-dot:   #b91c1c;
+
+  /* ── Refined Rounded Corners (From Reference UI) ── */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+  --radius-2xl: 28px;
+  --radius-full: 9999px;
+
+  /* ── Restrained Shadows ── */
+  --shadow-sm:       0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-card:     0 4px 20px -2px rgba(10, 37, 23, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+  --shadow-elevated: 0 12px 32px -4px rgba(10, 37, 23, 0.09);
+  --shadow-dark:     0 16px 40px rgba(6, 26, 16, 0.35);
+
+  /* ── Dimensions ── */
+  --header-height: 64px;
+  --sidebar-width: 260px;
+
+  /* ── Transitions ── */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.55;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Minimalist Scrollbars ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(10, 37, 23, 0.15);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(10, 37, 23, 0.3); }
+
+/* ── Typography ── */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-charcoal);
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* ==========================================================================
+   Layout Architecture
+   ========================================================================== */
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg-app);
+}
+
+/* ── Admin Top Header (Deep Forest Green) ── */
+.top-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background: var(--forest-900);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  color: #ffffff;
+}
+
+/* ── Main Body Container ── */
+.main-body-container {
+  display: flex;
+  margin-top: var(--header-height);
+  min-height: calc(100vh - var(--header-height));
+  width: 100%;
+}
+
+/* ── Admin Sidebar (Deep Forest Green) ── */
+.sidebar-nav {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--forest-950);
+  border-right: 1px solid rgba(255, 255, 255, 0.10);
+  overflow-y: auto;
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 14px;
+  color: #ffffff;
+}
+
+/* ── Workspace Content (Calm Sage / White Canvas) ── */
+.workspace-content {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  padding: 28px 36px;
+  max-width: 1600px;
+  width: calc(100% - var(--sidebar-width));
+  overflow-x: hidden;
+  background: var(--bg-app);
+}
+
+/* ==========================================================================
+   Editorial Cards & Sections (Inspired by Reference UI)
+   ========================================================================== */
+
+/* ── White Content Cards ── */
+.eco-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 24px;
+  transition: all 0.2s var(--ease-spring);
+  position: relative;
+  color: var(--text-charcoal);
+}
+
+.eco-card:hover {
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-elevated);
+}
+
+.eco-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.eco-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-charcoal);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: -0.02em;
+}
+
+.eco-card-subtitle {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+/* ── Forest Hero Container (Reference Top Card) ── */
+.forest-hero-container {
+  background: var(--forest-900);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  position: relative;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: var(--shadow-dark);
+}
+
+/* ── Editorial Section Wrapper ── */
+.editorial-white-section {
+  background: #ffffff;
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--border-light);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-card);
+}
+
+/* ── Stat Metric Counter Box (Reference 1200+, 98% style) ── */
+.stat-counter-box {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-counter-box:hover {
+  border-color: var(--forest-700);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.stat-counter-number {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--forest-900);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.stat-counter-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ==========================================================================
+   Tactile Button & Pill Controls
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: all 0.2s var(--ease-spring);
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+}
+
+/* ── Signature Fresh Lime Button (Reference primary CTA) ── */
+.btn-primary, .btn-lime {
+  background: var(--lime-500);
+  color: var(--forest-950);
+  font-weight: 700;
+  border: 1px solid var(--lime-600);
+  box-shadow: 0 2px 10px rgba(187, 244, 81, 0.35);
+}
+
+.btn-primary:hover, .btn-lime:hover {
+  background: var(--lime-400);
+  color: var(--forest-950);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(187, 244, 81, 0.45);
+}
+
+.btn-primary:active, .btn-lime:active {
+  transform: scale(0.98);
+}
+
+/* ── Secondary Clean Outline Button ── */
+.btn-secondary {
+  background: #ffffff;
+  color: var(--forest-900);
+  border: 1.5px solid var(--border-medium);
+}
+
+.btn-secondary:hover {
+  background: #f4f6f4;
+  border-color: var(--forest-700);
+  color: var(--forest-950);
+  transform: translateY(-1px);
+}
+
+/* ── Forest Dark Outline (For Hero overlay) ── */
+.btn-outline-white {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+}
+
+.btn-outline-white:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+/* ── Segmented Tab Capsule (Login & Modal) ── */
+.apple-segmented-container {
+  display: flex;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 4px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  gap: 4px;
+}
+
+.apple-segmented-item {
+  flex: 1;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.72);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.apple-segmented-item:hover {
+  color: #ffffff;
+}
+
+.apple-segmented-item.active {
+  background: var(--lime-500);
+  color: var(--forest-950);
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.btn-danger {
+  background: #ef4444;
+  color: #ffffff;
+  border: 1px solid #dc2626;
+  border-radius: var(--radius-full);
+}
+
+.btn-sm {
+  padding: 6px 14px;
+  font-size: 12px;
+  min-height: 32px;
+}
+
+/* ==========================================================================
+   Badges, Pills & Status Indicators
+   ========================================================================== */
+
+.risk-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.risk-pill.low {
+  background-color: var(--risk-low-bg);
+  color: var(--risk-low-text);
+  border: 1px solid var(--risk-low-border);
+}
+
+.risk-pill.moderate {
+  background-color: var(--risk-mod-bg);
+  color: var(--risk-mod-text);
+  border: 1px solid var(--risk-mod-border);
+}
+
+.risk-pill.high {
+  background-color: var(--risk-high-bg);
+  color: var(--risk-high-text);
+  border: 1px solid var(--risk-high-border);
+}
+
+.risk-pill.critical {
+  background-color: var(--risk-crit-bg);
+  color: var(--risk-crit-text);
+  border: 1px solid var(--risk-crit-border);
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: currentColor;
+  display: inline-block;
+}
+
+.pulse-dot.animated {
+  animation: pulse-ring 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.35); opacity: 0.3; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+/* ==========================================================================
+   Form Controls
+   ========================================================================== */
+
+.input-control, .select-control {
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border-medium);
+  background-color: #ffffff;
+  color: var(--text-charcoal);
+  font-size: 13.5px;
+  outline: none;
+  transition: all 0.2s var(--ease-spring);
+}
+
+.input-control:hover, .select-control:hover {
+  border-color: var(--forest-700);
+}
+
+.input-control:focus, .select-control:focus {
+  border-color: var(--forest-900);
+  box-shadow: 0 0 0 3px rgba(187, 244, 81, 0.4);
+}
+
+/* ==========================================================================
+   Leaflet Map Overrides & Workspace Layout
+   ========================================================================== */
+
+.map-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.map-main-workspace {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: calc(100vh - 195px);
+  min-height: 560px;
+  gap: 16px;
+}
+
+.map-canvas-container {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
+  position: relative;
+  border-radius: 20px !important;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-subtle);
+  background: var(--forest-950);
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  border-radius: 20px;
+  font-family: var(--font-sans);
+  z-index: 1;
+}
+
+.map-details-sidebar {
+  width: 360px;
+  flex-shrink: 0;
+  height: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 1023px) {
+  .map-main-workspace {
+    flex-direction: column;
+    height: auto;
+    min-height: auto;
+  }
+
+  .map-canvas-container {
+    height: 480px;
+    min-height: 480px;
+    width: 100%;
+  }
+
+  .map-details-sidebar {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    margin-top: 12px;
+  }
+}
+
+/* ==========================================================================
+   Top-Right Portal Identity Badges
+   ========================================================================== */
+
+.top-portal-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 12px;
+  border-radius: var(--radius-md);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.top-portal-identity.portal-responder {
+  background: rgba(245, 158, 11, 0.16);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.top-portal-identity.portal-resourcer {
+  background: rgba(6, 182, 212, 0.16);
+  border: 1px solid rgba(6, 182, 212, 0.4);
+}
+
+.top-portal-identity.portal-admin {
+  background: rgba(187, 244, 81, 0.15);
+  border: 1px solid rgba(187, 244, 81, 0.4);
+}
+
+.top-portal-identity.portal-citizen {
+  background: rgba(187, 244, 81, 0.15);
+  border: 1px solid rgba(187, 244, 81, 0.35);
+}
+
+.top-portal-icon-box {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.portal-responder .top-portal-icon-box {
+  background: rgba(245, 158, 11, 0.25);
+  color: #fbbf24;
+}
+
+.portal-resourcer .top-portal-icon-box {
+  background: rgba(6, 182, 212, 0.25);
+  color: #38bdf8;
+}
+
+.portal-admin .top-portal-icon-box {
+  background: rgba(187, 244, 81, 0.25);
+  color: #bbf451;
+}
+
+.portal-citizen .top-portal-icon-box {
+  background: rgba(187, 244, 81, 0.25);
+  color: #bbf451;
+}
+
+.pulse-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints & Utilities
+   ========================================================================== */
+
+/* ── Visibility Utilities ── */
+@media (max-width: 767px) {
+  .hide-on-mobile { display: none !important; }
+  .show-on-mobile { display: block !important; }
+  .show-on-mobile-flex { display: flex !important; }
+}
+
+@media (min-width: 768px) {
+  .show-on-mobile { display: none !important; }
+  .show-on-mobile-flex { display: none !important; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hide-on-tablet { display: none !important; }
+  .show-on-tablet { display: block !important; }
+  .show-on-tablet-flex { display: flex !important; }
+}
+
+@media (max-width: 767px), (min-width: 1024px) {
+  .show-on-tablet { display: none !important; }
+  .show-on-tablet-flex { display: none !important; }
+}
+
+@media (min-width: 1024px) {
+  .hide-on-desktop { display: none !important; }
+  .show-on-desktop { display: block !important; }
+  .show-on-desktop-flex { display: flex !important; }
+}
+
+/* ── Mobile Touch Targets ── */
+@media (max-width: 767px) {
+  .btn {
+    min-height: 44px;
+    padding: 10px 18px;
+    font-size: 13.5px;
+  }
+
+  .btn-sm {
+    min-height: 38px;
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  .input-control, .select-control {
+    min-height: 44px;
+    font-size: 14px;
+  }
+
+  .top-portal-identity {
+    padding: 4px 8px;
+    gap: 6px;
+  }
+
+  .top-portal-icon-box {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* ── Sidebar & Layout Breakpoints ── */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1050;
+}
+
+@media (max-width: 1023px) {
+  .sidebar-nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: min(300px, 86vw);
+    height: 100vh;
+    z-index: 1100;
+    transform: translateX(-100%);
+    transition: transform 0.28s var(--ease-spring);
+    box-shadow: 8px 0 32px rgba(0, 0, 0, 0.5);
+  }
+
+  .sidebar-nav.open {
+    transform: translateX(0);
+  }
+
+  .workspace-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 22px 20px;
+  }
+}
+
+/* Mobile Specifically: Compact Top Header & Bottom Navigation */
+@media (max-width: 767px) {
+  :root {
+    --header-height: 58px;
+  }
+
+  .top-header {
+    height: var(--header-height);
+    padding: 0 14px;
+  }
+
+  .workspace-content {
+    padding: 16px 12px 84px 12px !important;
+  }
+
+  .eco-card {
+    padding: 16px 14px;
+    border-radius: var(--radius-md);
+  }
+}
+
+/* ── Admin Mobile Bottom Navigation Bar ── */
+.admin-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .admin-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: var(--forest-950);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    z-index: 1000;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 8px;
+  }
+
+  .admin-bottom-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    font-size: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    min-width: 52px;
+    min-height: 48px;
+    gap: 3px;
+    border-radius: 8px;
+    transition: all 0.18s;
+  }
+
+  .admin-bottom-tab.active {
+    color: var(--lime-500);
+  }
+}
+
+/* ── Citizen Scroll Pill Strip for Mobile ── */
+.citizen-nav-scroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px 14px;
+  scrollbar-width: none;
+}
+.citizen-nav-scroll::-webkit-scrollbar { display: none; }
+
+.citizen-nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-decoration: none;
+  min-height: 38px;
+}
+
+/* ── Horizontally Scrollable Tables with Touch Momentum ── */
+.table-responsive-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 4px;
+}
+
+.table-responsive-wrapper table {
+  min-width: 600px;
+}
+
+table {
+  color: var(--text-charcoal);
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead tr {
+  border-bottom: 1.5px solid var(--border-medium) !important;
+  color: var(--text-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+table tbody tr {
+  border-bottom: 1px solid var(--border-subtle) !important;
+  transition: background 0.15s ease;
+}
+
+table tbody tr:hover {
+  background: rgba(10, 37, 23, 0.02);
+}
